@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="DiceCombatGame.Views.AddClassView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DiceCombatGame.Views"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style x:Key="textBlocks" TargetType="TextBlock">
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Padding" Value="0, 3, 0, 0" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+        <Style x:Key="textBoxes" TargetType="TextBox">
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Margin" Value="0, 0, 0, 5" />
+            <Setter Property="Padding" Value="0, 2, 0, 0" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+               Content="Add new player class"
+               FontSize="16"
+               FontWeight="Bold"
+               HorizontalAlignment="Center" />
+
+        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+               Content="Make a class, that will be saved to database and usable in the game."
+               HorizontalAlignment="Center"
+               FontStyle="Italic" />
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Vertical">
+            <TextBlock Text="Class name:" 
+                       Margin="0, 0, 5, 0"
+                       Style="{StaticResource textBlocks}" />
+            <TextBlock Text="Base strength:" 
+                       Margin="0, 5, 5, 0"
+                       Style="{StaticResource textBlocks}" />
+            <TextBlock Text="Base intelligense:" 
+                       Margin="0, 5, 5, 0"
+                       Style="{StaticResource textBlocks}" />
+            <TextBlock Text="Base dexterity:" 
+                       Margin="0, 5, 5, 0"
+                       Style="{StaticResource textBlocks}" />
+        </StackPanel>
+ 
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">
+            <TextBox TabIndex="1" 
+                     Style="{StaticResource textBoxes}" />
+            <TextBox TabIndex="2"  
+                     Style="{StaticResource textBoxes}" />
+            <TextBox TabIndex="3" 
+                     Style="{StaticResource textBoxes}" />
+            <TextBox TabIndex="4" 
+                     Style="{StaticResource textBoxes}" />
+            <Button Content="Save class"
+                    Name="SaveClass"
+                    TabIndex="5" 
+                    Width="100"
+                    HorizontalAlignment="Left"
+                    FontWeight="Bold"
+                    Margin="0, 10, 0, 5"/>
+        </StackPanel>
+    </Grid> 
+</UserControl>

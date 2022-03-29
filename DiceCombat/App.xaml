@@ -2,8 +2,15 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:DiceCombat"
+             xmlns:views="clr-namespace:DiceCombatGame.Views;assembly=DiceCombatGame"
+             xmlns:viewModels="clr-namespace:DiceCombatGame.ViewModels;assembly=DiceCombatGame"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <DataTemplate DataType="{x:Type viewModels:MainGameViewModel}">
+            <views:MainGameView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:AddClassViewModel}">
+            <views:AddClassView />
+        </DataTemplate>
     </Application.Resources>
 </Application>

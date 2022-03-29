@@ -4,9 +4,83 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiceCombat"
+        xmlns:game="clr-namespace:DiceCombatGame.Views;assembly=DiceCombatGame"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Dice Combat Game" 
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen"
+        Height="800" 
+        Width="1000"
+        KeyDown="Window_KeyDown">
+
+    <Window.Resources>
+        <Style x:Key="buttonStyle" TargetType="Button">
+            <Setter Property="Width" Value="150" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="0, 10, 10, 0" />
+            <Setter Property="BorderThickness" Value="2" />
+        </Style>
+    </Window.Resources>
+
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="3" 
+                    Orientation="Vertical" VerticalAlignment="Center">
+            <TextBlock Text="Dice Combat Game" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" />
+            <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Center"
+                    Grid.Row="1"
+                    Name="MainMenu">
+                <Button Content="New Game" 
+                    Command="{Binding UpdateViewCommand}"
+                    CommandParameter="NewGame"
+                    Style="{StaticResource buttonStyle}" />
+                <Button Content="Load Game" 
+                    Command="{Binding UpdateViewCommand}"
+                    CommandParameter="LoadGame"
+                    Style="{StaticResource buttonStyle}" />
+                <Button x:Name="Options" 
+                    Content="Options" 
+                    Click="Options_Click"
+                    Style="{StaticResource buttonStyle}" />
+                <Button Content="Add Class" 
+                    Command="{Binding UpdateViewCommand}"
+                    CommandParameter="AddClass"
+                    Style="{StaticResource buttonStyle}" />
+                <Button x:Name="AddMonster" 
+                    Content="Add Monster" 
+                    Click="AddMonster_Click"
+                    Style="{StaticResource buttonStyle}" />
+                <Button x:Name="ExitGame" 
+                    Content="Exit" 
+                    Click="ExitGame_Click"
+                    Style="{StaticResource buttonStyle}" />
+            </StackPanel>
+        </StackPanel>
+
+        <ContentControl Grid.Row="1" 
+                        Grid.Column="1"
+                        Content="{Binding SelectedViewModel}" />
+        
+        
+
+        <game:MainGameView Grid.Row="1"
+                           Visibility="Hidden" />
+
+        <game:AddClassView Grid.Row="1"
+                           Visibility="Hidden" />
 
     </Grid>
 </Window>
