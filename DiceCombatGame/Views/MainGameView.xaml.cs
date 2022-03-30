@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DiceCombatGame.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace DiceCombatGame.Views
         public MainGameView()
         {
             InitializeComponent();
+            MainGameViewModel viewModel = new();
+            classesLV.ItemsSource = viewModel.PlayerClassesList;
         }
     }
 }

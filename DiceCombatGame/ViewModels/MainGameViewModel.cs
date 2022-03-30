@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using DiceCombatData.Test;
+using DiceCombatData.Models;
 
 namespace DiceCombatGame.ViewModels
 {
     public class MainGameViewModel : BaseViewModel
     {
-        public List<string> PlayerClasses { get; set; }
+        public List<ClassModel> PlayerClassesList { get; set; }
 
         public MainGameViewModel()
         {
@@ -14,7 +14,7 @@ namespace DiceCombatGame.ViewModels
 
         public void GetClasses()
         {
-            PlayerClasses = TestDB.GetData();
+            PlayerClassesList = DiceCombatData.DBinterfaces.PlayerClasses.GetClassesList();
         }
     }
 }
