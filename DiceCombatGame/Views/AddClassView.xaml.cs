@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DiceCombatGame.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,18 @@ namespace DiceCombatGame.Views
     /// </summary>
     public partial class AddClassView : UserControl
     {
+        AddClassViewModel viewModel;
+
         public AddClassView()
         {
             InitializeComponent();
+            viewModel = new AddClassViewModel();
+            DataContext = viewModel;
+        }
+
+        private void SaveClass_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.SaveClass();
         }
     }
 }

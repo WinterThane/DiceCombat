@@ -12,9 +12,6 @@ namespace DiceCombatGame.ViewModels
             GetClasses();
         }
 
-        public void GetClasses()
-        {
-            PlayerClassesList = DiceCombatData.DBinterfaces.PlayerClasses.GetClassesList();
-        }
+        public void GetClasses() => PlayerClassesList = DiceCombatData.DBinterfaces.PlayerClasses.GetClassesList();
     }
 }

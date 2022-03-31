@@ -2,6 +2,7 @@
 using DiceCombatData.Models;
 using Microsoft.Data.Sqlite;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace DiceCombatData.DBinterfaces
 {
@@ -56,6 +57,33 @@ namespace DiceCombatData.DBinterfaces
             }
 
             return classesList;
+        }
+
+        public static void WriteNewClass(ClassModel classModel)
+        {
+            using var connection = new SqliteConnection(Config.ConnString);
+            string sql = "INSERT INTO TestBaseClass(Name, Strength, Intelligence, Dexterity) VALUES (@name, @strength, @intelligence, @dexterity)";
+
+            SqliteCommand command = new(sql, connection)
+            {
+                CommandType = System.Data.CommandType.Text
+            };
+            command.Parameters.AddWithValue("@name", classModel.Name);
+            command.Parameters.AddWithValue("@strength", classModel.Strength);
+            command.Parameters.AddWithValue("@intelligence", classModel.Intelligence);
+            command.Parameters.AddWithValue("@dexterity", classModel.Dexterity);
+
+            try
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+                MessageBox.Show("query executed");
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
