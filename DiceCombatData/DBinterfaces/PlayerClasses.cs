@@ -1,7 +1,6 @@
-﻿using DiceCombatData.Database;
-using DiceCombatData.Models;
-using Microsoft.Data.Sqlite;
+﻿using DiceCombatData.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 
 namespace DiceCombatData.DBinterfaces
@@ -12,24 +11,9 @@ namespace DiceCombatData.DBinterfaces
         {
             List<ClassModel> classesList = new();
 
-            using (var connection = new SqliteConnection(Config.ConnString))
+            using (var context = new DiceContext())
             {
-                connection.Open();
-                SqliteCommand command = connection.CreateCommand();
-                command.CommandText = @"SELECT * FROM TestBaseClass";
-
-                using SqliteDataReader? reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    var playerClass = new ClassModel
-                    {
-                        Name = reader.GetString(1),
-                        Strength = reader.GetInt32(2),
-                        Intelligence = reader.GetInt32(3),
-                        Dexterity = reader.GetInt32(4)
-                    };
-                    classesList.Add(playerClass);
-                }
+                classesList = context.ClassModels.OfType<ClassModel>().ToList();
             }
 
             return classesList;
@@ -39,50 +23,47 @@ namespace DiceCombatData.DBinterfaces
         {
             ClassModel classesList = new();
 
-            using (var connection = new SqliteConnection(Config.ConnString))
-            {
-                connection.Open();
-                SqliteCommand command = connection.CreateCommand();
-                command.CommandText = @"SELECT * FROM TestBaseClass WHERE Name = $className";
-                command.Parameters.AddWithValue("$className", className);
+            //using (var connection = new SqliteConnection(Config.ConnString))
+            //{
+            //    connection.Open();
+            //    SqliteCommand command = connection.CreateCommand();
+            //    command.CommandText = @"SELECT * FROM BaseClass WHERE Name = $className";
+            //    command.Parameters.AddWithValue("$className", className);
 
-                using SqliteDataReader? reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    classesList.Name = reader.GetString(1);
-                    classesList.Strength = reader.GetInt32(2);
-                    classesList.Intelligence = reader.GetInt32(3);
-                    classesList.Dexterity = reader.GetInt32(4);
-                }
-            }
+            //    using SqliteDataReader? reader = command.ExecuteReader();
+            //    while (reader.Read())
+            //    {
+            //        classesList.Name = reader.GetString(1);
+            //        classesList.Strength = reader.GetInt32(2);
+            //        classesList.Intelligence = reader.GetInt32(3);
+            //        classesList.Dexterity = reader.GetInt32(4);
+            //    }
+            //}
 
             return classesList;
         }
 
         public static void WriteNewClass(ClassModel classModel)
         {
-            using var connection = new SqliteConnection(Config.ConnString);
-            string sql = "INSERT INTO TestBaseClass(Name, Strength, Intelligence, Dexterity) VALUES (@name, @strength, @intelligence, @dexterity)";
+            using (var context = new DiceContext())
+            {
+                var newClass = new ClassModel()
+                {
+                    Name = classModel.Name,
+                    Strength = classModel.Strength,
+                    Intelligence = classModel.Intelligence,
+                    Dexterity = classModel.Dexterity
+                };
 
-            SqliteCommand command = new(sql, connection)
-            {
-                CommandType = System.Data.CommandType.Text
-            };
-            command.Parameters.AddWithValue("@name", classModel.Name);
-            command.Parameters.AddWithValue("@strength", classModel.Strength);
-            command.Parameters.AddWithValue("@intelligence", classModel.Intelligence);
-            command.Parameters.AddWithValue("@dexterity", classModel.Dexterity);
-
-            try
-            {
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-                MessageBox.Show("query executed");
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
+                try
+                {
+                    context.ClassModels.Add(newClass);
+                    context.SaveChanges();
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
         }
     }

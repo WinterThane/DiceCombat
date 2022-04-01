@@ -1,4 +1,6 @@
-﻿using DiceCombatData.Models;
+﻿using DiceCombatData.DBinterfaces;
+using DiceCombatData.Models;
+using System.Windows;
 
 namespace DiceCombatGame.ViewModels
 {
@@ -24,7 +26,7 @@ namespace DiceCombatGame.ViewModels
         {
             if (ClassModel != null)
             {
-                DiceCombatData.DBinterfaces.PlayerClasses.WriteNewClass(ClassModel);
+                PlayerClasses.WriteNewClass(ClassModel);
             }
         }
     }

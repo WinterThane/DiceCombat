@@ -1,7 +1,9 @@
-﻿namespace DiceCombatData.Database
+﻿using System;
+
+namespace DiceCombatData.Database
 {
     internal static class Config
     {
-        public static string ConnString = "Data Source=Database\\DiceCombatGameDB.db";
+        public static string ConnString = "Data Source=" + Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DiceCombat\DiceCombatDB.sqlite;";
     }
 }
