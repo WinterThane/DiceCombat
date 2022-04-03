@@ -30,15 +30,12 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0" Grid.ColumnSpan="3" 
-                    Orientation="Vertical" VerticalAlignment="Center">
-            <TextBlock Text="Dice Combat Game" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" />
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+            <TextBlock Text="Dice Combat Game" 
+                       HorizontalAlignment="Center" 
+                       FontSize="24" 
+                       FontWeight="Bold" />
             <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="Center"
                     Grid.Row="1"
@@ -70,17 +67,9 @@
             </StackPanel>
         </StackPanel>
 
-        <ContentControl Grid.Row="1" 
-                        Grid.Column="1"
+        <ContentControl Grid.Row="1"
+                        HorizontalAlignment="Center"
                         Content="{Binding SelectedViewModel}" />
         
-        
-
-        <game:MainGameView Grid.Row="1"
-                           Visibility="Hidden" />
-
-        <game:AddClassView Grid.Row="1"
-                           Visibility="Hidden" />
-
     </Grid>
 </Window>

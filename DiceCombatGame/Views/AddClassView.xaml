@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:helpers="clr-namespace:DiceCombatGame.Behaviors"
              xmlns:local="clr-namespace:DiceCombatGame.Views"
              mc:Ignorable="d">
 
@@ -19,15 +20,16 @@
             <Setter Property="Padding" Value="0, 2, 0, 0" />
             <Setter Property="TextAlignment" Value="Left" />
             <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="helpers:SelectAllTextOnFocus.IsEnabled" Value="True" />
         </Style>
     </UserControl.Resources>
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="30" Name="Title" />
+            <RowDefinition Height="30" Name="FlavorText" />
+            <RowDefinition Height="Auto" Name="NewClassInput" />
+            <RowDefinition Height="*" Name="ListOfClasses" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -64,9 +66,11 @@
         <StackPanel Grid.Row="2" Grid.Column="1"
                     Orientation="Vertical">
             <TextBox TabIndex="1" 
+                     Name="ClassNameText"
                      Width="100"
                      Text="{Binding ClassModel.Name}"
-                     Style="{StaticResource textBoxes}" />
+                     Style="{StaticResource textBoxes}"
+                     TextChanged="ClassNameText_TextChanged" />
             <TextBox TabIndex="2"  
                      Text="{Binding ClassModel.Strength}"
                      Style="{StaticResource textBoxes}" />
@@ -84,6 +88,34 @@
                     FontWeight="Bold"
                     Margin="0, 10, 0, 5"
                     Click="SaveClass_Click"/>
+            <TextBlock Text="Class added to database."
+                       Name="ClassAddedText"
+                       FontStyle="Italic"
+                       Visibility="Hidden" />
         </StackPanel>
+        <ListView Name="classesLV"
+                  Grid.Row="3"
+                  Grid.Column="1"
+                  Width="370"
+                  HorizontalAlignment="Left"
+                  Margin="0, 10, 0, 0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="Name: " />
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="Strength: " />
+                        <TextBlock Text="{Binding Strength}" FontWeight="Bold" />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="Intelligence: " />
+                        <TextBlock Text="{Binding Intelligence}" FontWeight="Bold" />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="Dexterity: " />
+                        <TextBlock Text="{Binding Dexterity}" FontWeight="Bold" />
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid> 
 </UserControl>

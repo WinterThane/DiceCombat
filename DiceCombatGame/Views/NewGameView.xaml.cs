@@ -17,13 +17,18 @@ using System.Windows.Shapes;
 namespace DiceCombatGame.Views
 {
     /// <summary>
-    /// Interaction logic for MainGameView.xaml
+    /// Interaction logic for NewGameView.xaml
     /// </summary>
-    public partial class MainGameView : UserControl
+    public partial class NewGameView : UserControl
     {
-        public MainGameView()
+        NewGameViewModel viewModel;
+
+        public NewGameView()
         {
             InitializeComponent();
+            viewModel = new NewGameViewModel();
+            Portraits.ItemsSource = NewGameViewModel.GetPortraitList();
+            DataContext = viewModel;
         }
     }
 }

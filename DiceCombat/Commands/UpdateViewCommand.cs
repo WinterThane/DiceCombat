@@ -26,7 +26,7 @@ namespace DiceCombat.Commands
             {
                 if (parameter.ToString() == "NewGame")
                 {
-                    viewModel.SelectedViewModel = new MainGameViewModel();
+                    viewModel.SelectedViewModel = new NewGameViewModel();
                 }
                 else if (parameter.ToString() == "AddClass")
                 {

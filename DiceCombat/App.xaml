@@ -6,8 +6,8 @@
              xmlns:viewModels="clr-namespace:DiceCombatGame.ViewModels;assembly=DiceCombatGame"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <DataTemplate DataType="{x:Type viewModels:MainGameViewModel}">
-            <views:MainGameView />
+        <DataTemplate DataType="{x:Type viewModels:NewGameViewModel}">
+            <views:NewGameView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModels:AddClassViewModel}">
             <views:AddClassView />

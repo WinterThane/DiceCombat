@@ -10,4 +10,8 @@
     <ProjectReference Include="..\DiceCombatData\DiceCombatData.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Converter\" />
+  </ItemGroup>
+
 </Project>

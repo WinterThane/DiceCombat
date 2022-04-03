@@ -1,6 +1,7 @@
 ﻿using DiceCombatGame.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,12 +28,25 @@ namespace DiceCombatGame.Views
         {
             InitializeComponent();
             viewModel = new AddClassViewModel();
+            classesLV.ItemsSource = viewModel.PlayerClassesList;
             DataContext = viewModel;
         }
 
         private void SaveClass_Click(object sender, RoutedEventArgs e)
         {
             viewModel.SaveClass();
+            ClassAddedText.Visibility = Visibility.Visible;
+        }
+
+        private void ClassNameText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ClassAddedText.Visibility=Visibility.Hidden;
+        }
+
+        private void SelectAllText(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            textBox.Dispatcher.BeginInvoke(new Action(() => textBox.SelectAll()));
         }
     }
 }

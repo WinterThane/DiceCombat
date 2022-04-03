@@ -1,11 +1,13 @@
 ﻿using DiceCombatData.DBinterfaces;
 using DiceCombatData.Models;
-using System.Windows;
+using System.Collections.Generic;
 
 namespace DiceCombatGame.ViewModels
 {
     public class AddClassViewModel : BaseViewModel
     {
+        public List<ClassModel> PlayerClassesList { get; set; }
+
         private ClassModel classModel;
         public ClassModel ClassModel
         {
@@ -20,7 +22,10 @@ namespace DiceCombatGame.ViewModels
         public AddClassViewModel()
         {
             ClassModel = new ClassModel();
+            GetClasses();
         }
+
+        public void GetClasses() => PlayerClassesList = PlayerClasses.GetClassesList();
 
         public void SaveClass()
         {
