@@ -25,19 +25,34 @@ namespace DiceCombat
             DataContext = new MainWindowViewModel();
         }
 
+        private void NewGame_Click(object sender, RoutedEventArgs e)
+        {
+            HideSplashText();
+        }
+
         private void LoadGame_Click(object sender, RoutedEventArgs e)
         {
-
+            HideSplashText();
         }
 
         private void Options_Click(object sender, RoutedEventArgs e)
         {
+            HideSplashText();
+        }
 
+        private void AddClass_Click(object sender, RoutedEventArgs e)
+        {
+            HideSplashText();
         }
 
         private void AddMonster_Click(object sender, RoutedEventArgs e)
         {
+            HideSplashText();
+        }
 
+        private void HideSplashText()
+        {
+            SplashText.Visibility = Visibility.Collapsed;
         }
 
         private void ExitGame_Click(object sender, RoutedEventArgs e)

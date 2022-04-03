@@ -8,7 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DiceSplash.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DiceCombatGame\DiceCombatGame.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="DiceSplash.jpg" />
   </ItemGroup>
 
 </Project>

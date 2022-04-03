@@ -21,26 +21,17 @@ namespace DiceCombatData.DBinterfaces
 
         public static ClassModel GetSpecificClass(string className)
         {
-            ClassModel classesList = new();
+            ClassModel playerClass = new();
 
-            //using (var connection = new SqliteConnection(Config.ConnString))
-            //{
-            //    connection.Open();
-            //    SqliteCommand command = connection.CreateCommand();
-            //    command.CommandText = @"SELECT * FROM BaseClass WHERE Name = $className";
-            //    command.Parameters.AddWithValue("$className", className);
+            using (var context = new DiceContext())
+            {
+                if (className != null)
+                {
+                    playerClass = context.ClassModels.OfType<ClassModel>().FirstOrDefault(x => x.Name == className);
+                }
+            }
 
-            //    using SqliteDataReader? reader = command.ExecuteReader();
-            //    while (reader.Read())
-            //    {
-            //        classesList.Name = reader.GetString(1);
-            //        classesList.Strength = reader.GetInt32(2);
-            //        classesList.Intelligence = reader.GetInt32(3);
-            //        classesList.Dexterity = reader.GetInt32(4);
-            //    }
-            //}
-
-            return classesList;
+            return playerClass;
         }
 
         public static void WriteNewClass(ClassModel classModel)

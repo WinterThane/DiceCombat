@@ -41,35 +41,63 @@
                     Grid.Row="1"
                     Name="MainMenu">
                 <Button Content="New Game" 
-                    Command="{Binding UpdateViewCommand}"
-                    CommandParameter="NewGame"
-                    Style="{StaticResource buttonStyle}" />
+                        Name="NewGame"
+                        Command="{Binding UpdateViewCommand}"
+                        CommandParameter="NewGame"
+                        Style="{StaticResource buttonStyle}"
+                        Click="NewGame_Click" />
                 <Button Content="Load Game" 
-                    Command="{Binding UpdateViewCommand}"
-                    CommandParameter="LoadGame"
-                    Style="{StaticResource buttonStyle}" />
-                <Button x:Name="Options" 
-                    Content="Options" 
-                    Click="Options_Click"
-                    Style="{StaticResource buttonStyle}" />
+                        Name="LoadGame"
+                        Command="{Binding UpdateViewCommand}"
+                        CommandParameter="LoadGame"
+                        Style="{StaticResource buttonStyle}"
+                        Click="LoadGame_Click" />
+                <Button Content="Options" 
+                        Name="Options" 
+                        Command="{Binding UpdateViewCommand}"
+                        CommandParameter="Options"
+                        Style="{StaticResource buttonStyle}"
+                        Click="Options_Click" />
                 <Button Content="Add Class" 
-                    Command="{Binding UpdateViewCommand}"
-                    CommandParameter="AddClass"
-                    Style="{StaticResource buttonStyle}" />
-                <Button x:Name="AddMonster" 
-                    Content="Add Monster" 
-                    Click="AddMonster_Click"
-                    Style="{StaticResource buttonStyle}" />
-                <Button x:Name="ExitGame" 
-                    Content="Exit" 
-                    Click="ExitGame_Click"
-                    Style="{StaticResource buttonStyle}" />
+                        Name="AddClass"
+                        Command="{Binding UpdateViewCommand}"
+                        CommandParameter="AddClass"
+                        Style="{StaticResource buttonStyle}"
+                        Click="AddClass_Click" />
+                <Button Content="Add Monster" 
+                        Name="AddMonster" 
+                        Command="{Binding UpdateViewCommand}"
+                        CommandParameter="AddMonster"
+                        Style="{StaticResource buttonStyle}" 
+                        Click="AddMonster_Click" />
+                <Button Content="Exit" 
+                        Name="ExitGame"                        
+                        Style="{StaticResource buttonStyle}"
+                        Click="ExitGame_Click" />
             </StackPanel>
         </StackPanel>
 
         <ContentControl Grid.Row="1"
                         HorizontalAlignment="Center"
                         Content="{Binding SelectedViewModel}" />
+
+        <StackPanel Name="SplashText"
+                    Grid.Row="1"
+                    Orientation="Vertical"
+                    HorizontalAlignment="Center">
+            <TextBlock Text="Welcome to some sort of a game with dice."
+                       FontSize="14"
+                       Margin="0, 10, 0, 5" />
+            <TextBlock Text="Create a party of four and see how lucky you are."
+                       FontSize="14"
+                       Margin="0, 10, 0, 30" />
+            <Image Source="/DiceSplash.jpg"
+                   Width="300"
+                   Height="300" />
+            <TextBlock Text="Roll the dice and fight the monsters, or something."
+                       FontSize="14"
+                       Margin="0, 30, 0, 0" />
+        </StackPanel>
         
     </Grid>
 </Window>

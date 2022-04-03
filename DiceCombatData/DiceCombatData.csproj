@@ -16,6 +16,9 @@
     <None Update="Database\DiceCombatDB.sqlite-journal">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Images\General\DiceSplash.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Images\Portraits\Player\priest.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
